@@ -21,6 +21,6 @@ public class PlayerController : MonoBehaviour
         verticalInput = Input.GetAxis("Vertical");
         
         transform.Translate(Vector3.back * Time.deltaTime * speed * verticalInput);
-        transform.Translate(Vector3.right * Time.deltaTime * turnSpeed * horizontalInput);
+        transform.Translate(Vector3.up * Time.deltaTime * turnSpeed * horizontalInput);
     }
 }
