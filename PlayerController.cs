@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public float speed = 5f;
+    public float turnSpeed;
     // Start is called before the first frame update
     void Start()
     {
@@ -15,5 +16,6 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         transform.Translate(Vector3.back * Time.deltaTime * speed);
+        transform.Translate(Vector3.right * Time.deltaTime * speed);
     }
 }
