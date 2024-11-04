@@ -7,7 +7,7 @@ public class Shooting : MonoBehaviour
     public float bulletSpeed = 100;
     public GameObject bulletPrefab;
     public Transform nozzle;
-    public ParticleSystem smokeEffect;
+    public ParticleSystem muzzleFlash;
 
     void Update()
     {
@@ -16,10 +16,22 @@ public class Shooting : MonoBehaviour
             Shoot();
         }
     }
-    void Shoot()
+    async void Shoot()
     {
+        //create a bullet
         GameObject bullet = Instantiate(bulletPrefab, nozzle.position, Quaternion.identity);
         bullet.GetComponent<Rigidbody>().AddForce(nozzle.forward * bulletSpeed, ForceMode.Impulse);
-        Instantiate(smokeEffect, nozzle.position, Quaternion.identity);
+
+        //play the animation
+        if (muzzleFlash != null && !muzzleFlash.isPlaying)
+        {
+            muzzleFlash.Play();
+        }
+        StartCoroutine(StopMuzzleFlash() );
+    }
+    IEnumerator StopMuzzleFlash()
+    {
+         yield return new WaitForSeconds(0.2f);
+         muzzleFlash.Stop();
     }
 }
