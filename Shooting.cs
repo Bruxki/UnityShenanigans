@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Shooting : MonoBehaviour
 {
+    [Range(0, 300)]
     public float bulletSpeed = 100;
     public GameObject bulletPrefab;
     public Transform nozzle;
